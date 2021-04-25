@@ -2,34 +2,37 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color:#e7e5e5;
 }
 
+/* ============= Draggable ============ */
 .u-container {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
+  margin: 5em auto;
+
 }
 
 .draggable-container {
-  padding: 5px;
-  width: 18em;
+  min-width: 3px;
   display: flex;
   justify-content: center;
-  margin: 10px;
+  background-color: white;
+  margin: 2px;
+  flex-shrink: 1;
 }
 
 .draggable {
   background-color: white;
   cursor: move;
-  width: 150px;
 }
 
 .non-draggable {
   background-color: white;
   cursor: move;
-  width: 150px;
 }
 
 .draggable-target {
@@ -78,6 +81,11 @@ body {
 
 .card-image {
   width: 18em;
+  align-self: center;
+}
+
+.card-img-top {
+  width: 100%;
 }
 
 .icon-group {
