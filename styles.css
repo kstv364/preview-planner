@@ -26,6 +26,12 @@ body {
   width: 150px;
 }
 
+.non-draggable {
+  background-color: white;
+  cursor: move;
+  width: 150px;
+}
+
 .draggable-target {
   opacity: 0.5;
 }

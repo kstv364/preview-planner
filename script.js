@@ -6,6 +6,16 @@ var n = 10;
 var i,
   c = 0;
 
+setUpNonDraggable = (draggable) => {
+  draggable.addEventListener("dragstart", () => {
+    draggable.classList.add("dragging");
+  });
+
+  draggable.addEventListener("dragend", () => {
+    draggable.classList.remove("dragging");
+  });
+};
+
 setUpDraggable = (draggable) => {
   draggable.addEventListener("dragstart", () => {
     draggable.classList.add("dragging");
@@ -19,7 +29,9 @@ setUpDraggable = (draggable) => {
 
 setUpDraggableContainer = (container) => {
   container.addEventListener("dragover", (e) => {
-    e.preventDefault();
+    if (document.querySelector(".dragging").getAttribute("draggable")) {
+      e.preventDefault();
+    }
     container.classList.add("draggable-target");
   });
   container.addEventListener("dragleave", (e) => {
@@ -27,7 +39,7 @@ setUpDraggableContainer = (container) => {
     container.classList.remove("draggable-target");
   });
   container.addEventListener("drop", (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const droptarget = container;
     container.classList.remove("draggable-target");
     console.log(droptarget);
@@ -66,12 +78,14 @@ createInstaCard = (imgUrl) => {
   const newDraggableContainer = document.createElement("div");
   newDraggableContainer.classList.add("draggable-container");
   const newDiv = document.createElement("div");
-  newDiv.classList.add("draggable","card-image", "card");
+  newDiv.classList.add("non-draggable", "card-image", "card");
   const newImg = document.createElement("img");
   newImg.src = imgUrl;
   newImg.classList.add("card-img-top");
   newDiv.appendChild(newImg);
   newDraggableContainer.appendChild(newDiv);
+
+  setUpNonDraggable(newDiv);
   container.prepend(newDraggableContainer);
 };
 
