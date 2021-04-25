@@ -35,10 +35,16 @@ draggables.forEach((draggable) => {
 containers.forEach((container) => {
   container.addEventListener("dragover", (e) => {
     e.preventDefault();
+    container.classList.add("draggable-target");
+  });
+  container.addEventListener("dragleave", (e) => {
+    // e.preventDefault();
+    container.classList.remove("draggable-target");
   });
   container.addEventListener("drop", (e) => {
     e.preventDefault();
     const droptarget = container;
+    container.classList.remove("draggable-target");
     console.log(droptarget);
     const source = document.querySelector(".drag-parent");
     const dropchildren = [...droptarget.children];
@@ -47,6 +53,6 @@ containers.forEach((container) => {
     source.innerHTML = "";
     dropchildren.map((child) => source.appendChild(child));
     sourcechildren.map((child) => droptarget.appendChild(child));
-    source.classList.remove('drag-parent')
+    source.classList.remove("drag-parent");
   });
 });
